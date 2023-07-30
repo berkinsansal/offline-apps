@@ -9,6 +9,13 @@ const routes: Routes = [
         component: HomeComponent,
         pathMatch: 'full',
     },
+
+    // remotes here:
+    {
+        path: 'calculator',
+        loadChildren: () => import('calculator/Module').then(m => m.CalculatorModule)
+    },
+
     {
         path: '**',
         component: NotFoundComponent
