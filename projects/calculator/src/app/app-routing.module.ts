@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalculatorComponent } from './calculator/calculator.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: CalculatorComponent,
+        loadChildren: () => import('./calculator/calculator.module').then(m => m.CalculatorModule),
         pathMatch: 'full',
     }
 ];
