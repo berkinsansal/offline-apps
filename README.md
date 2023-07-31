@@ -1,27 +1,62 @@
-# OfflineApps
+# Offline Apps
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+* Module Federation is used
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm run run:all` for a dev server. All applications will open in the browser, `http://localhost:4200/` is container app. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Add new MFE
+1. Move into the workspace directory and create the new application:  
+```
+cd offline-apps
+ng generate application %APP_NAME% --routing --style=scss
+```
+2. Simplify app.component.html of new application as below:
+```
+<span>{{ title }} shell app</span>
+<router-outlet></router-outlet>
+```
+3. Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
+```
+ng add @angular-architects/module-federation --project %APP_NAME% --type remote --port %PORT_NUMBER%
+```
+4. Create sub module and component for the new application:
+```
+ng generate module %APP_NAME% --project %APP_NAME% --route TO_BE_EMPTY_STRING --module app
+```
+5. Change the `path` in the `AppRoutingModule` of the new application to an **empty string**:
+```
+const routes: Routes = [{ path: '', loadChildren: () => import('./%APP_NAME%/%APP_NAME%.module').then(m => m.%APP_NAME%Module) }];
+```
+6. Change `exposes` in `webpack.config.js` of the new application as below:
+```
+exposes: {
+  './Module': './projects/%APP_NAME%/src/app/%APP_NAME%/%APP_NAME%.module.ts',
+},
+```
+7. Update `remotes` in `webpack.config.js` of `container-app`:
+```
+remotes: {
+  ...,
+  ...,
+  "%APP_NAME%": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
+},
+```
+8. Update `decl.d.ts` of `container-app`:
+```
+...;
+...;
+declare module '%APP_NAME%/Module';
+```
+9. Update `routes` in `AppRoutingModule` of `container-app`:
+```
+// remotes here:
+...,
+...,
+{
+    path: '%APP_NAME%',
+    loadChildren: () => import('%APP_NAME%/Module').then(m => m.%APP_NAME%Module)
+},
+```
