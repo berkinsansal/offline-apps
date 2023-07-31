@@ -5,7 +5,7 @@ module.exports = withModuleFederationPlugin({
   name: 'calendar',
 
   exposes: {
-    './Component': './projects/calendar/src/app/app.component.ts',
+    './Module': './projects/calendar/src/app/calendar/calendar.module.ts',
   },
 
   shared: {
