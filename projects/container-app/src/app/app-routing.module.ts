@@ -1,3 +1,4 @@
+import { loadRemoteModule } from '@angular-architects/module-federation';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -13,11 +14,23 @@ const routes: Routes = [
     // remotes here:
     {
         path: 'calculator',
-        loadChildren: () => import('calculator/Module').then(m => m.CalculatorModule)
+        loadChildren: () =>
+            loadRemoteModule({
+                type: 'manifest',
+                remoteName: 'calculator',
+                exposedModule: './Module'
+            })
+                .then(m => m.CalculatorModule)
     },
     {
         path: 'calendar',
-        loadChildren: () => import('calendar/Module').then(m => m.CalendarModule)
+        loadChildren: () =>
+            loadRemoteModule({
+                type: 'manifest',
+                remoteName: 'calendar',
+                exposedModule: './Module'
+            })
+                .then(m => m.CalendarModule)
     },
 
     {

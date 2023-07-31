@@ -36,27 +36,27 @@ exposes: {
   './Module': './projects/%APP_NAME%/src/app/%APP_NAME%/%APP_NAME%.module.ts',
 },
 ```
-7. Update `remotes` in `webpack.config.js` of `container-app`:
+7. Update `mf.manifest.json` of `container-app`:
 ```
-remotes: {
-  ...,
-  ...,
-  "%APP_NAME%": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
-},
+{
+    ...,
+    ...,
+    "%APP_NAME%": "http://localhost:%PORT_NUMBER%/remoteEntry.js"
+}
 ```
-8. Update `decl.d.ts` of `container-app`:
-```
-...;
-...;
-declare module '%APP_NAME%/Module';
-```
-9. Update `routes` in `AppRoutingModule` of `container-app`:
+8. Update `routes` in `AppRoutingModule` of `container-app`:
 ```
 // remotes here:
 ...,
 ...,
 {
     path: '%APP_NAME%',
-    loadChildren: () => import('%APP_NAME%/Module').then(m => m.%APP_NAME%Module)
+    loadChildren: () =>
+        loadRemoteModule({
+            type: 'manifest',
+            remoteName: '%APP_NAME%',
+            exposedModule: './Module'
+        })
+            .then(m => m.%APP_NAME%Module)
 },
 ```

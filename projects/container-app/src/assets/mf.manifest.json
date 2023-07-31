@@ -1,0 +1,4 @@
+{
+    "calculator": "http://localhost:4201/remoteEntry.js",
+    "calendar": "http://localhost:4202/remoteEntry.js"
+}
