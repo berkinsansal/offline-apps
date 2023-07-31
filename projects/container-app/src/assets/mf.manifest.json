@@ -1,4 +1,12 @@
 {
-    "calculator": "http://localhost:4201/remoteEntry.js",
-    "calendar": "http://localhost:4202/remoteEntry.js"
+    "calculator": {
+        "remoteEntry": "http://localhost:4201/remoteEntry.js",
+        "displayName": "Calculator",
+        "ngModuleName": "CalculatorModule"
+    },
+    "calendar": {
+        "remoteEntry": "http://localhost:4202/remoteEntry.js",
+        "displayName": "Calendar",
+        "ngModuleName": "CalendarModule"
+    }
 }

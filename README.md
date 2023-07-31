@@ -41,22 +41,10 @@ exposes: {
 {
     ...,
     ...,
-    "%APP_NAME%": "http://localhost:%PORT_NUMBER%/remoteEntry.js"
+    "%APP_NAME%": {
+        "remoteEntry": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
+        "displayName": "%APP_NAME%",
+        "ngModuleName": "%APP_NAME%Module"
+    }
 }
-```
-8. Update `routes` in `AppRoutingModule` of `container-app`:
-```
-// remotes here:
-...,
-...,
-{
-    path: '%APP_NAME%',
-    loadChildren: () =>
-        loadRemoteModule({
-            type: 'manifest',
-            remoteName: '%APP_NAME%',
-            exposedModule: './Module'
-        })
-            .then(m => m.%APP_NAME%Module)
-},
 ```

@@ -1,3 +1,18 @@
 <h1>Offline Apps</h1>
 <hr>
+<ul>
+    <li>
+        <a routerLink="/">Home</a>
+    </li>
+
+    <!-- Dynamically create menu items for all Micro Frontends -->
+    <li *ngFor="let remote of remotes">
+        <a [routerLink]="remote.routePath">{{remote.displayName}}</a>
+    </li>
+
+    <li>
+        <a routerLink="manifest">Manifest</a>
+    </li>
+</ul>
+<hr>
 <router-outlet></router-outlet>
