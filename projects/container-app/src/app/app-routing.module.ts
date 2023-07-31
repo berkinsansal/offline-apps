@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'calculator',
         loadChildren: () => import('calculator/Module').then(m => m.CalculatorModule)
     },
+    {
+        path: 'calendar',
+        loadChildren: () => import('calendar/Module').then(m => m.CalendarModule)
+    },
 
     {
         path: '**',
