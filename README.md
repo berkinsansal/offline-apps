@@ -15,7 +15,8 @@ ng generate application %APP_NAME% --routing --style=scss
 ```
 2. Simplify app.component.html of new application as below:
 ```
-<span>{{ title }} shell app</span>
+<h1>{{ title }} shell app</h1>
+<a routerLink="main">Main</a>
 <router-outlet></router-outlet>
 ```
 3. Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
@@ -24,27 +25,22 @@ ng add @angular-architects/module-federation --project %APP_NAME% --type remote 
 ```
 4. Create sub module and component for the new application:
 ```
-ng generate module %APP_NAME% --project %APP_NAME% --route TO_BE_EMPTY_STRING --module app
+ng generate module main --project %APP_NAME% --route main --module app
 ```
-5. Change the `path` in the `AppRoutingModule` of the new application to an **empty string**:
-```
-const routes: Routes = [{ path: '', loadChildren: () => import('./%APP_NAME%/%APP_NAME%.module').then(m => m.%APP_NAME%Module) }];
-```
-6. Change `exposes` in `webpack.config.js` of the new application as below:
+5. Change `exposes` in `webpack.config.js` of the new application as below:
 ```
 exposes: {
-  './Module': './projects/%APP_NAME%/src/app/%APP_NAME%/%APP_NAME%.module.ts',
+  './Module': './projects/%APP_NAME%/src/app/main/main.module.ts',
 },
 ```
-7. Update `mf.manifest.json` of `container-app`:
+6. Update `mf.manifest.json` of `container-app`:
 ```
 {
     ...,
     ...,
     "%APP_NAME%": {
         "remoteEntry": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
-        "displayName": "%APP_NAME%",
-        "ngModuleName": "%APP_NAME%Module"
+        "displayName": "%APP_NAME%"
     }
 }
 ```

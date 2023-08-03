@@ -36,7 +36,7 @@ export function buildRoutes(manifest: CustomManifest): Routes {
                     remoteName: mfeKey,
                     exposedModule: './Module'
                 })
-                    .then(m => m[mfe.ngModuleName])
+                    .then(m => m.MainModule)
         }
     });
 
