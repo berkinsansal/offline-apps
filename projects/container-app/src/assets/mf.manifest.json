@@ -1,10 +1,12 @@
 {
     "calculator": {
         "remoteEntry": "http://localhost:4201/remoteEntry.js",
-        "displayName": "Calculator"
+        "displayName": "Calculator",
+        "displayIcon": "bi-calculator"
     },
     "calendar": {
         "remoteEntry": "http://localhost:4202/remoteEntry.js",
-        "displayName": "Calendar"
+        "displayName": "Calendar",
+        "displayIcon": "bi-calendar-date"
     }
 }

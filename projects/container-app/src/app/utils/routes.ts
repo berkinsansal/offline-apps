@@ -10,8 +10,12 @@ export function buildRoutes(manifest: CustomManifest): Routes {
     const routesBeginning: Routes = [
         {
             path: '',
-            component: HomeComponent,
+            redirectTo: '/home',
             pathMatch: 'full',
+        },
+        {
+            path: 'home',
+            component: HomeComponent,
         },
         {
             path: 'manifest',

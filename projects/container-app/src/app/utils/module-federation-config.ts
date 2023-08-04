@@ -1,8 +1,9 @@
 import { Manifest, RemoteConfig } from "@angular-architects/module-federation";
 
 export type CustomRemoteConfig = RemoteConfig & {
-    displayName: string;
     routePath: string;
+    displayName: string;
+    displayIcon: string;
 };
 
 export type CustomManifest = Manifest<CustomRemoteConfig>;

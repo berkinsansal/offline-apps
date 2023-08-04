@@ -1,0 +1,12 @@
+$bgImage_light: url('assets/themes/light/wallpaper.jpg');
+$bgImage_dark: url('assets/themes/dark/wallpaper.jpg');
+
+// mixin that enables css variables in light mode
+@mixin lighten() {
+  --bgImage: #{$bgImage_light};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darken() {
+  --bgImage: #{$bgImage_dark};
+}

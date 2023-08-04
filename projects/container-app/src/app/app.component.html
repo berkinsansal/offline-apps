@@ -1,18 +1,27 @@
-<h1>Offline Apps</h1>
-<hr>
-<ul>
-    <li>
-        <a routerLink="/">Home</a>
-    </li>
+<div class="container">
+    <div class="header">
+        <h1>Offline Apps</h1>
+        <p-dropdown [options]="themeOptions" [(ngModel)]="selectedTheme" optionValue="value" optionLabel="value" (onChange)="changeTheme($event)">
+            <ng-template pTemplate="selectedItem">
+                <i class="bi" [ngClass]="selectedTheme | themeIcon"></i>
+            </ng-template>
+            <ng-template pTemplate="item" let-item>
+                <i class="bi" [ngClass]="item.value | themeIcon"></i>
+            </ng-template>
+        </p-dropdown>
+    </div>
 
-    <!-- Dynamically create menu items for all Micro Frontends -->
-    <li *ngFor="let remote of remotes">
-        <a [routerLink]="remote.routePath">{{remote.displayName}}</a>
-    </li>
+    <div class="remote-app-container">
+        <router-outlet></router-outlet>
+    </div>
 
-    <li>
-        <a routerLink="manifest">Manifest</a>
-    </li>
-</ul>
-<hr>
-<router-outlet></router-outlet>
+    <div class="footer">
+        <p-dock [model]="menuItems">
+            <ng-template pTemplate="item" let-item>
+                <div class="dock-item-div" [style.background-color]="item.id | color: selectedTheme">
+                    <i class="dock-item-icon bi" [ngClass]="item.icon"></i>
+                </div>
+            </ng-template>
+        </p-dock>
+    </div>
+</div>

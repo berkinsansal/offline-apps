@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/styles/variables";
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: var(--font-family);
+    margin: 0;
+
+    &.light {
+        @include lighten();
+    }
+
+    &.dark  {
+        @include darken();
+    }
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: var(--bgImage);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 1rem;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: white solid 1px;
+    }
+
+    .remote-app-container {
+        flex: 1;
+        overflow: auto;
+    }
+
+    .footer {
+
+        .p-dock {
+            z-index: 1000;
+
+            .dock-item-div {
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .dock-item-icon {
+                    color: white;
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}
+
+pre {
+    font-size: 1.3rem;
+    background: rgba(0, 0, 0, 0.3);
+}
