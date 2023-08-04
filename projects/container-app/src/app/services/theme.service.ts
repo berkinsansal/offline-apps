@@ -4,6 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Theme } from '../enums/theme.enum';
 import { ThemeStorage, THEME_STORAGE_SERVICE } from './storage/theme-storage.service';
 
+// RESOURCES FOR THEME SWITCHES
+// https://dev.to/pahanperera/implement-light-dark-mode-in-angular-42ff
+// https://primeng.org/theming#switchthemes
+
 @Injectable({
     providedIn: 'root'
 })

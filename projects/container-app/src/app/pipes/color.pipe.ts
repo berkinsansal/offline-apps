@@ -1,6 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Theme } from '../enums/theme.enum';
-import { ThemeService } from '../services/theme.service';
+
+// RESOURCES FOR COLOR PALETTES
+// https://coolors.co/4769ff-627bfe-708aff-8bb927-73a223-6f960d-069d3d-bb80cb-d5729b-fd6356
 
 @Pipe({
     name: 'color'
