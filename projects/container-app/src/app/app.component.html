@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container scrollbar">
     <div class="header">
         <h1>Offline Apps</h1>
         <p-dropdown [options]="themeOptions" [(ngModel)]="selectedTheme" optionValue="value" optionLabel="value" (onChange)="changeTheme($event)">
@@ -11,7 +11,7 @@
         </p-dropdown>
     </div>
 
-    <div class="remote-app-container">
+    <div class="remote-app-container scrollbar">
         <router-outlet></router-outlet>
     </div>
 
