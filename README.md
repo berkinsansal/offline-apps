@@ -9,30 +9,27 @@ Run `npm run run:all` for a dev server. All applications will open in the browse
 
 ## Add new MFE
 
-1. Move into the workspace directory and create the new application:  
+1. Move into the workspace directory,  
+   Create the new application,  
+   Create sub module and component for the new application,  
+   Create environment files for the new application,  
+   Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
 ```
 cd offline-apps
 ng generate application %APP_NAME% --routing --style=scss
-```
-
-2. Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
-```
+ng generate module main --project %APP_NAME% --route main --module app
+ng generate environments --project %APP_NAME%
 ng add @angular-architects/module-federation --project %APP_NAME% --type remote --port %PORT_NUMBER%
 ```
 
-3. Create sub module and component for the new application:
-```
-ng generate module main --project %APP_NAME% --route main --module app
-```
-
-4. Change `exposes` in `webpack.config.js` of the new application as below:
+2. Change `exposes` in `webpack.config.js` of the new application as below:
 ```
 exposes: {
   './Module': './projects/%APP_NAME%/src/app/main/main.module.ts',
 },
 ```
 
-5. Update `mf.manifest.json` of `container-app`:
+3. Update `mf.manifest.json` of `container-app`:
 ```
 {
     ...,
