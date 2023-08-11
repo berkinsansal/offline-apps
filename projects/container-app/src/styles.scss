@@ -69,8 +69,9 @@ pre {
     background: color-mix(in srgb, var(--surface-ground) 30%, transparent);;
 }
 
-/* Customize website's scrollbar like Mac OS
-Not supports in Firefox and IE */
+/* Customize website's scrollbar
+Not supports in Firefox and IE
+https://gist.github.com/spemer/a0e218bbb45433bd611e68446523a00b */
 .scrollbar {
     overflow: auto;
 
