@@ -27,7 +27,9 @@
 						"inlineStyleLanguage": "scss",
 						"assets": [
 							"projects/container-app/src/favicon.ico",
-							"projects/container-app/src/assets"
+							"projects/container-app/src/assets",
+                            "_headers",
+                            "_redirects"
 						],
 						"styles": [
 							"projects/container-app/src/styles.scss",
