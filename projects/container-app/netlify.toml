@@ -1,4 +1,4 @@
 [build]
-  command = "npm run build container-app"
+  command = "npm run build container-app && cp _redirects dist/container-app/_redirects && cp _headers dist/container-app/_headers"
   publish = "dist/container-app"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- projects/container-app"
