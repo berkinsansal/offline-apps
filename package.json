@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
+    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js",
+    "run:some": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js container-app calendar"
   },
   "private": true,
   "dependencies": {

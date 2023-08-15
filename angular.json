@@ -71,7 +71,17 @@
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/container-app/src/environments/environment.ts",
+                                    "with": "projects/container-app/src/environments/environment.development.ts"
+                                },
+                                {
+                                    "replace": "projects/container-app/src/assets/mf.manifest.json",
+                                    "with": "projects/container-app/src/assets/mf.manifest.development.json"
+                                }
+                            ]
 						}
 					},
 					"defaultConfiguration": "production"

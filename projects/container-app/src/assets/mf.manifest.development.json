@@ -1,11 +1,11 @@
 {
     "calculator": {
-        "remoteEntry": "https://offline-apps-calculator.netlify.app/remoteEntry.js",
+        "remoteEntry": "http://localhost:4201/remoteEntry.js",
         "displayName": "Calculator",
         "displayIcon": "bi-calculator"
     },
     "calendar": {
-        "remoteEntry": "https://offline-apps-calendar.netlify.app/remoteEntry.js",
+        "remoteEntry": "http://localhost:4202/remoteEntry.js",
         "displayName": "Calendar",
         "displayIcon": "bi-calendar-date"
     }

@@ -2,6 +2,7 @@
 
 * This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 * Module Federation is used
+* Netlify is used to deploy apps (new site definition is required for new MFE)
 
 ## Development server
 
@@ -29,14 +30,27 @@ exposes: {
 },
 ```
 
-3. Update `mf.manifest.json` of `container-app`:
+3. Update `mf.manifest.development.json` and `mf.manifest.json` of `container-app`:
 ```
+// mf.manifest.development.json
 {
     ...,
     ...,
     "%APP_NAME%": {
         "remoteEntry": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
-        "displayName": "%APP_NAME%"
+        "displayName": "%APP_NAME%",
+        "displayIcon": "bi-%ICON%"
+    }
+}
+
+// mf.manifest.json
+{
+    ...,
+    ...,
+    "%APP_NAME%": {
+        "remoteEntry": "https://offline-apps-%APP_NAME%.netlify.app/remoteEntry.js",
+        "displayName": "%APP_NAME%",
+        "displayIcon": "bi-%ICON%"
     }
 }
 ```
