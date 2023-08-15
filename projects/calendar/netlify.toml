@@ -1,14 +1,4 @@
 [build]
   command = "npm run build calendar"
   publish = "dist/calendar"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[headers]]
-  # Define which paths this specific [[headers]] block will cover.
-  for = "/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- projects/calendar"
