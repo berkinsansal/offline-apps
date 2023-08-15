@@ -76,10 +76,20 @@
                                 {
                                     "replace": "projects/container-app/src/environments/environment.ts",
                                     "with": "projects/container-app/src/environments/environment.development.ts"
-                                },
+                                }
+                            ]
+						},
+						"developmentWithProdRemotes": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
                                 {
-                                    "replace": "projects/container-app/src/assets/mf.manifest.json",
-                                    "with": "projects/container-app/src/assets/mf.manifest.development.json"
+                                    "replace": "projects/container-app/src/environments/environment.ts",
+                                    "with": "projects/container-app/src/environments/environment.development-with-prod-remotes.ts"
                                 }
                             ]
 						}
@@ -95,6 +105,9 @@
 						},
 						"development": {
 							"browserTarget": "container-app:build:development"
+						},
+						"developmentWithProdRemotes": {
+							"browserTarget": "container-app:build:developmentWithProdRemotes"
 						}
 					},
 					"defaultConfiguration": "development",
