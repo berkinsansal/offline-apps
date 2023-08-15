@@ -1,6 +1,6 @@
 [build]
   command = "npm run build calendar"
-  publish = "calendar"
+  publish = "dist/calendar"
 
 [[redirects]]
   from = "/*"

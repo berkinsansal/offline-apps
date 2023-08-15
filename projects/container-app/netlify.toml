@@ -1,6 +1,6 @@
 [build]
   command = "npm run build container-app"
-  publish = "container-app"
+  publish = "dist/container-app"
 
 [[redirects]]
   from = "/*"
