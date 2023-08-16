@@ -1,4 +1,4 @@
 [build]
-  command = "npm run build calendar && cp _redirects _headers dist/calendar/"
+  command = "npm run build calendar && cp _headers dist/calendar/"
   publish = "dist/calendar"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- projects/calendar/"
