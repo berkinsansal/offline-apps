@@ -3,9 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DockModule } from 'primeng/dock';
 import { DropdownModule } from 'primeng/dropdown';
-import { TooltipModule } from 'primeng/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +12,7 @@ import { ManifestComponent } from './manifest/manifest.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ColorPipe } from './pipes/color.pipe';
 import { ThemeIconPipe } from './pipes/theme-icon.pipe';
-import { ThemeLocalStorageService, THEME_STORAGE_SERVICE } from './services/storage/theme-storage.service';
+import { THEME_STORAGE_SERVICE, ThemeLocalStorageService } from './services/storage/theme-storage.service';
 
 @NgModule({
     declarations: [
@@ -31,9 +29,8 @@ import { ThemeLocalStorageService, THEME_STORAGE_SERVICE } from './services/stor
         FormsModule,
         AppRoutingModule,
 
-        DockModule,
+        // DockModule,
         DropdownModule,
-        TooltipModule,
     ],
     providers: [
         {

@@ -15,7 +15,9 @@
         <router-outlet></router-outlet>
     </div>
 
-    <div class="footer">
+    <div #footerPlaceHolder></div>
+
+    <!-- <div class="footer">
         <p-dock [model]="menuItems">
             <ng-template pTemplate="item" let-item>
                 <div class="dock-item-div" [style.background-color]="item.id | color: selectedTheme">
@@ -23,5 +25,5 @@
                 </div>
             </ng-template>
         </p-dock>
-    </div>
+    </div> -->
 </div>

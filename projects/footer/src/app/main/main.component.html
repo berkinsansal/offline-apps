@@ -1,1 +1,10 @@
-<p>main works!</p>
+<div class="footer">
+    <p-dock [model]="menuItems">
+        <ng-template pTemplate="item" let-item>
+            <!-- <div class="dock-item-div" [style.background-color]="item.id | colorPipe: selectedTheme"> -->
+            <div class="dock-item-div" [style.background-color]="'#627BFE'">
+                <i class="dock-item-icon bi" [ngClass]="item.icon"></i>
+            </div>
+        </ng-template>
+    </p-dock>
+</div>
