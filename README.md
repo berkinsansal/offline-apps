@@ -8,7 +8,7 @@
 
 Run `npm run run:all` for a dev server. All applications will open in the browser, `http://localhost:4200/` is container app. The application will automatically reload if you change any of the source files  
   
-*If you want to open just container app and desired MFEs, you can edit `run:some` script in `package.json` file with desired app names*
+*If you want to open just container app and desired MFEs, you can edit `run:some` script in `package.json` file with desired app names, then run `npm run run:some`*
 ```
 "run:some": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js container-app mfe_1_name mfe_2_name ... mfe_n_name"
 ```
