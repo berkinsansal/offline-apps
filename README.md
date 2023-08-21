@@ -13,7 +13,7 @@ Run `npm run run:all` for a dev server. All applications will open in the browse
 "run:some": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js container-app mfe_1_name mfe_2_name ... mfe_n_name"
 ```
 
-## Add new MFE
+## Add new MFE as Module
 
 1. Move into the workspace directory,  
    Create the new application,  
@@ -21,7 +21,7 @@ Run `npm run run:all` for a dev server. All applications will open in the browse
    Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
 ```
 cd offline-apps
-ng generate application %APP_NAME% --routing --style=scss
+ng generate application %APP_NAME% --routing --style scss
 ng generate module main --project %APP_NAME% --route main --module app
 ng add @angular-architects/module-federation --project %APP_NAME% --type remote --port %PORT_NUMBER%
 ```
@@ -41,6 +41,7 @@ exposes: {
     ...,
     "%APP_NAME%": {
         "remoteEntry": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "%APP_NAME%",
         "displayIcon": "bi-%ICON%"
     }
@@ -53,6 +54,55 @@ exposes: {
 <h1>{{ title }} shell app</h1>
 <a routerLink="main">Main</a>
 <router-outlet></router-outlet>
+```
+
+## Add new MFE as Component
+
+1. Move into the workspace directory,  
+   Create the new application,  
+   Create sub module and component for the new application,  
+   Activate and configure Module Federation (`%PORT_NUMBER%` should be unassigned port, better to increase last used port by one):
+```
+cd offline-apps
+ng generate application %APP_NAME% --routing false --style scss
+ng generate component main --project %APP_NAME% --standalone
+ng add @angular-architects/module-federation --project %APP_NAME% --type remote --port %PORT_NUMBER%
+```
+
+2. Add `MainComponent` into `imports` array of `app.module.ts` of the new application
+```
+    imports: [
+        ...,
+        ...,
+        MainComponent
+    ],
+```
+
+3. Change `exposes` in `webpack.config.js` of the new application as below:
+```
+exposes: {
+  './Component': './projects/%APP_NAME%/src/app/main/main.component.ts',
+},
+```
+
+4. Update `mf.manifest.development.json` and `mf.manifest.json` of `container-app`:
+```
+// mf.manifest.development.json
+{
+    ...,
+    ...,
+    "%APP_NAME%": {
+        "remoteEntry": "http://localhost:%PORT_NUMBER%/remoteEntry.js",
+        "isForRouting": false
+    }
+}
+```
+
+*  *Optional* - Simplify app.component.html of new application as below:
+
+```
+<h1>{{ title }} shell app</h1>
+<app-main></app-main>
 ```
 
 ## Deploy new MFE
@@ -76,6 +126,7 @@ exposes: {
     ...,
     "%APP_NAME%": {
         "remoteEntry": "%NETLIFY_APP_URL%/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "%APP_NAME%",
         "displayIcon": "bi-%ICON%"
     }

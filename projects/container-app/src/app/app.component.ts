@@ -46,10 +46,15 @@ export class AppComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         const manifest = getManifest<CustomManifest>();
-        setRoutePaths(manifest);
 
+        const manifestForRouting: CustomManifest = Object.fromEntries(Object.entries(manifest).filter(x => x[1].isForRouting));
+        const manifestForNotRouting: CustomManifest = Object.fromEntries(Object.entries(manifest).filter(x => !x[1].isForRouting));
+
+        // this.loadComponents(manifestForNotRouting);
+
+        setRoutePaths(manifestForRouting);
         // Hint: Move this to an APP_INITIALIZER to avoid issues with deep linking
-        const routes = buildRoutes(manifest);
+        const routes = buildRoutes(manifestForRouting);
         this.router.resetConfig(routes);
 
         const tooltipProps: TooltipOptions = {
@@ -64,21 +69,19 @@ export class AppComponent implements OnInit {
             label: 'Home',
             routerLink: 'home',
             icon: 'bi-house',
-            // styleClass: this.colorSchemaLight[0],
             tooltipOptions: {
                 tooltipLabel: 'Home',
                 ...tooltipProps,
             },
         });
 
-        this.remotes = Object.values(manifest);
+        this.remotes = Object.values(manifestForRouting);
         this.remotes.forEach(remote => {
             this.menuItems.push({
                 id: this.menuItems.length.toString(),
                 label: remote.displayName,
                 routerLink: remote.routePath,
                 icon: remote.displayIcon,
-                // styleClass: this.colorSchemaLight[this.menuItems.length % this.colorSchemaLight.length],
                 tooltipOptions: {
                     tooltipLabel: remote.displayName,
                     ...tooltipProps,
@@ -91,7 +94,6 @@ export class AppComponent implements OnInit {
             label: 'Manifest',
             routerLink: 'manifest',
             icon: 'bi-filetype-json',
-            // styleClass: this.colorSchemaLight[this.menuItems.length % this.colorSchemaLight.length],
             tooltipOptions: {
                 tooltipLabel: 'Manifest',
                 ...tooltipProps,

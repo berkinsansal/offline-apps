@@ -1,12 +1,18 @@
 {
     "calculator": {
         "remoteEntry": "http://localhost:4201/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "Calculator",
         "displayIcon": "bi-calculator"
     },
     "calendar": {
         "remoteEntry": "http://localhost:4202/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "Calendar",
         "displayIcon": "bi-calendar-date"
+    },
+    "footer": {
+        "remoteEntry": "http://localhost:4203/remoteEntry.js",
+        "isForRouting": false
     }
 }
