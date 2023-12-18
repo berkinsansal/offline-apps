@@ -1,12 +1,18 @@
 {
     "calculator": {
         "remoteEntry": "https://offline-apps-calculator.netlify.app/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "Calculator",
         "displayIcon": "bi-calculator"
     },
     "calendar": {
         "remoteEntry": "https://offline-apps-calendar.netlify.app/remoteEntry.js",
+        "isForRouting": true,
         "displayName": "Calendar",
         "displayIcon": "bi-calendar-date"
+    },
+    "footer": {
+        "remoteEntry": "https://offline-apps-footer.netlify.app/remoteEntry.js",
+        "isForRouting": false
     }
 }

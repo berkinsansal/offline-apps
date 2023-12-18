@@ -56,6 +56,34 @@ exposes: {
 <router-outlet></router-outlet>
 ```
 
+### Deploy new MFE as Module
+
+1. Create `netlify.toml` file under `projects/%APP_NAME%`
+```
+[build]
+  command = "npm run build %APP_NAME% && cp _redirects _headers dist/%APP_NAME%/"
+  publish = "dist/%APP_NAME%"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- projects/%APP_NAME%/"
+```
+
+2. Add new site in Netlify Web UI,  
+   Change `site name`,  
+   Update `Package directory` as `projects/%APP_NAME%`
+
+3. Update `mf.manifest.json` of `container-app`:
+```
+{
+    ...,
+    ...,
+    "%APP_NAME%": {
+        "remoteEntry": "%NETLIFY_APP_URL%/remoteEntry.js",
+        "isForRouting": true,
+        "displayName": "%APP_NAME%",
+        "displayIcon": "bi-%ICON%"
+    }
+}
+```
+
 ## Add new MFE as Component
 
 1. Move into the workspace directory,  
@@ -105,7 +133,7 @@ exposes: {
 <app-main></app-main>
 ```
 
-## Deploy new MFE
+### Deploy new MFE as Component
 
 1. Create `netlify.toml` file under `projects/%APP_NAME%`
 ```
@@ -126,9 +154,7 @@ exposes: {
     ...,
     "%APP_NAME%": {
         "remoteEntry": "%NETLIFY_APP_URL%/remoteEntry.js",
-        "isForRouting": true,
-        "displayName": "%APP_NAME%",
-        "displayIcon": "bi-%ICON%"
+        "isForRouting": false
     }
 }
 ```
